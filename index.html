@@ -1,0 +1,1113 @@
+index.html
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solis Noir LLC — Independent Software & Digital Product Studio</title>
+  <meta name="description" content="Solis Noir LLC is an independent Montana software studio engineering real-time telemetry platforms, mobile ecosystems, and high-utility consumer applications." />
+  <meta name="theme-color" content="#070709" />
+
+  <!-- Open Graph / Social Meta -->
+  <meta property="og:title" content="Solis Noir LLC — Digital Product Studio" />
+  <meta property="og:description" content="Architecting high-craft digital products, real-time telemetry engines, and next-generation mobile ecosystems." />
+  <meta property="og:type" content="website" />
+
+  <!-- Google Fonts: Plus Jakarta Sans, Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            obsidian: {
+              950: '#070709',
+              900: '#0C0C10',
+              850: '#111116',
+              800: '#16161D',
+            },
+            solar: {
+              300: '#FCD34D',
+              400: '#FBBF24',
+              500: '#D4AF37',
+              600: '#B48A1E',
+            },
+          },
+          boxShadow: {
+            'solar-glow': '0 0 60px -15px rgba(212, 175, 55, 0.28)',
+            'solar-subtle': '0 0 30px -10px rgba(212, 175, 55, 0.16)',
+          },
+          animation: {
+            'spin-slow': 'spin 48s linear infinite',
+            'spin-reverse-slower': 'spinReverse 72s linear infinite',
+            'pulse-corona': 'pulseCorona 6s ease-in-out infinite',
+          },
+          keyframes: {
+            spinReverse: {
+              '0%': { transform: 'rotate(360deg)' },
+              '100%': { transform: 'rotate(0deg)' },
+            },
+            pulseCorona: {
+              '0%, 100%': { opacity: '0.72', transform: 'scale(1)' },
+              '50%': { opacity: '1', transform: 'scale(1.04)' },
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Custom scrollbar & ambient styling */
+    body {
+      background-color: #070709;
+      color: #F8FAFC;
+      overflow-x: hidden;
+    }
+
+    /* Subtle noise grain overlay for tactile luxury finish */
+    .noise-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 40;
+      opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* Architectural grid background */
+    .bg-grid-pattern {
+      background-size: 64px 64px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    }
+
+    /* Glassmorphic surface cards */
+    .glass-card {
+      background: linear-gradient(160deg, rgba(20, 20, 27, 0.72) 0%, rgba(11, 11, 15, 0.88) 100%);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: border-color 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .glass-card:hover {
+      border-color: rgba(212, 175, 55, 0.35);
+      box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.8), 0 0 35px -15px rgba(212, 175, 55, 0.18);
+    }
+
+    /* Solar gold gradient text */
+    .text-solar-gradient {
+      background: linear-gradient(135deg, #FFFBEB 0%, #FCD34D 45%, #D4AF37 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Eclipse core styling */
+    .eclipse-disc {
+      background: radial-gradient(circle at 35% 35%, #14141A 0%, #070709 68%, #030304 100%);
+      box-shadow:
+        inset 0 0 24px rgba(255, 255, 255, 0.06),
+        inset -4px -4px 20px rgba(212, 175, 55, 0.25),
+        0 0 45px 6px rgba(212, 175, 55, 0.28),
+        0 0 110px 24px rgba(245, 158, 11, 0.12);
+    }
+
+    /* Reveal animation utility */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-solar-500/30 selection:text-solar-300">
+
+  <!-- Subtle Film Grain -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- Toast Notification Banner (for Clipboard & Form Feedback) -->
+  <div id="toast-notification" role="status" aria-live="polite" class="fixed bottom-6 right-6 z-50 translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="flex items-center gap-3 px-4 py-3 rounded-xl bg-obsidian-800/95 border border-solar-500/40 shadow-2xl backdrop-blur-md">
+      <span class="flex items-center justify-center w-6 h-6 rounded-full bg-solar-500/20 text-solar-400">
+        <i data-lucide="check" class="w-3.5 h-3.5"></i>
+      </span>
+      <span id="toast-message" class="text-sm font-medium text-slate-100">Copied to clipboard</span>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 1. STICKY GLASSMORPHIC NAVBAR                                         -->
+  <!-- ===================================================================== -->
+  <header class="fixed top-0 inset-x-0 z-30 border-b border-white/[0.07] bg-obsidian-950/80 backdrop-blur-xl">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Monogram + Wordmark -->
+      <a href="#" class="group flex items-center gap-3.5 focus:outline-none">
+        <div class="relative w-10 h-10 flex items-center justify-center">
+          <!-- Custom SVG Solis Noir Eclipse Emblem -->
+          <svg viewBox="0 0 44 44" class="w-10 h-10 overflow-visible" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="logoCorona" cx="50%" cy="50%" r="50%">
+                <stop offset="55%" stop-color="#D4AF37" stop-opacity="0.65" />
+                <stop offset="85%" stop-color="#F59E0B" stop-opacity="0.18" />
+                <stop offset="100%" stop-color="#070709" stop-opacity="0" />
+              </radialGradient>
+              <linearGradient id="ringGrad" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#FCD34D" />
+                <stop offset="50%" stop-color="#D4AF37" />
+                <stop offset="100%" stop-color="#785A12" />
+              </linearGradient>
+            </defs>
+            <circle cx="22" cy="22" r="21" fill="url(#logoCorona)" class="transition-opacity duration-300 group-hover:opacity-100 opacity-80" />
+            <circle cx="22" cy="22" r="14.5" stroke="url(#ringGrad)" stroke-width="1.25" />
+            <circle cx="22" cy="22" r="12.5" fill="#070709" />
+            <!-- Minimalist SN Monogram inside Eclipse -->
+            <path d="M18.8 18.4C18.8 17.5 18 16.9 16.9 16.9C15.8 16.9 15 17.5 15 18.3C15 19.2 15.8 19.6 17 19.9C18.2 20.2 19 20.7 19 21.7C19 22.7 18.1 23.4 16.9 23.4C15.6 23.4 14.8 22.7 14.8 21.7" stroke="#F8FAFC" stroke-width="1.35" stroke-linecap="round"/>
+            <path d="M22.2 23.3V17L26.8 23.3V17" stroke="#FCD34D" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-display font-bold tracking-[0.18em] text-sm sm:text-base text-slate-100 group-hover:text-white transition-colors">
+            SOLIS NOIR
+          </span>
+          <span class="font-mono text-[10px] tracking-[0.22em] text-solar-500/90 uppercase">
+            Studio • LLC
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+        <a href="#studio" class="hover:text-slate-100 transition-colors">Capabilities</a>
+        <a href="#ventures" class="hover:text-slate-100 transition-colors">Ventures</a>
+        <a href="#architecture" class="hover:text-slate-100 transition-colors">Philosophy</a>
+        <a href="#contact" class="hover:text-slate-100 transition-colors">Contact</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-3">
+        <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold tracking-wide uppercase bg-white/[0.05] hover:bg-solar-500 hover:text-obsidian-950 text-slate-100 border border-white/10 hover:border-solar-400 transition-all duration-300">
+          <span>Start a Conversation</span>
+          <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-menu-btn" aria-label="Toggle navigation menu" class="md:hidden p-2.5 rounded-xl bg-white/[0.04] border border-white/10 text-slate-300 hover:text-white">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-white/[0.07] bg-obsidian-950/95 backdrop-blur-xl px-6 py-5 space-y-4">
+      <a href="#studio" class="mobile-nav-link block py-2 text-sm font-medium text-slate-300 hover:text-solar-400">Capabilities</a>
+      <a href="#ventures" class="mobile-nav-link block py-2 text-sm font-medium text-slate-300 hover:text-solar-400">Ventures</a>
+      <a href="#architecture" class="mobile-nav-link block py-2 text-sm font-medium text-slate-300 hover:text-solar-400">Philosophy</a>
+      <a href="#contact" class="mobile-nav-link block py-2 text-sm font-medium text-slate-300 hover:text-solar-400">Contact</a>
+      <div class="pt-2 border-t border-white/[0.07]">
+        <a href="#contact" class="mobile-nav-link flex items-center justify-center gap-2 w-full py-3 rounded-xl text-xs font-semibold uppercase tracking-wider bg-solar-500 text-obsidian-950">
+          <span>Start a Conversation</span>
+          <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================================================================== -->
+    <!-- 2. HERO SECTION WITH INTERACTIVE BLACK SUN ECLIPSE CENTERPIECE        -->
+    <!-- ===================================================================== -->
+    <section id="hero" class="relative min-h-screen pt-32 pb-20 sm:pt-36 sm:pb-28 flex items-center bg-grid-pattern overflow-hidden">
+      <!-- Radial Ambient Vignette -->
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(212,175,55,0.09)_0%,rgba(7,7,9,0.92)_62%,#070709_100%)] pointer-events-none"></div>
+
+      <!-- Interactive Canvas Starfield / Telemetry Dust -->
+      <canvas id="solar-canvas" class="absolute inset-0 w-full h-full pointer-events-none opacity-75"></canvas>
+
+      <div class="relative z-10 max-w-6xl mx-auto px-5 sm:px-8 w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          
+          <!-- Left Column: Studio Copy -->
+          <div class="lg:col-span-7 text-center lg:text-left space-y-7">
+            <!-- Status Pill -->
+            <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.09] backdrop-blur-md">
+              <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-solar-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-solar-500"></span>
+              </span>
+              <span class="font-mono text-[11px] tracking-[0.16em] text-slate-300 uppercase">
+                Hamilton, Montana • Digital Product Studio
+              </span>
+            </div>
+
+            <!-- Headline -->
+            <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.08] text-slate-50">
+              Architecting <br class="hidden sm:inline" />
+              <span class="text-solar-gradient">High-Craft</span> Digital Products.
+            </h1>
+
+            <!-- Subheadline -->
+            <p class="max-w-2xl mx-auto lg:mx-0 text-base sm:text-lg text-slate-400 leading-relaxed font-normal">
+              <strong class="text-slate-200 font-medium">Solis Noir LLC</strong> is an independent software studio engineering real-time telemetry platforms, native mobile ecosystems, and high-utility consumer applications built for uncompromising reliability.
+            </p>
+
+            <!-- Primary & Secondary CTAs -->
+            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+              <a href="#ventures" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl font-semibold text-sm bg-gradient-to-r from-solar-400 to-solar-500 text-obsidian-950 shadow-solar-glow hover:brightness-110 transition-all duration-300">
+                <span>Explore Ventures</span>
+                <i data-lucide="compass" class="w-4 h-4"></i>
+              </a>
+              <a href="#contact" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl font-medium text-sm bg-white/[0.04] hover:bg-white/[0.08] text-slate-200 border border-white/10 transition-all duration-300">
+                <span>Get in Touch</span>
+                <i data-lucide="send" class="w-4 h-4 text-solar-400"></i>
+              </a>
+            </div>
+
+            <!-- Subtle Studio Telemetry Strip -->
+            <div class="pt-6 border-t border-white/[0.07] grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0 text-left">
+              <div>
+                <div class="font-mono text-xs text-slate-500 uppercase">Focus</div>
+                <div class="text-sm font-medium text-slate-200 mt-0.5">iOS • Android • Cloud</div>
+              </div>
+              <div>
+                <div class="font-mono text-xs text-slate-500 uppercase">Architecture</div>
+                <div class="text-sm font-medium text-slate-200 mt-0.5">Real-Time Telemetry</div>
+              </div>
+              <div>
+                <div class="font-mono text-xs text-slate-500 uppercase">Headquarters</div>
+                <div class="text-sm font-medium text-slate-200 mt-0.5">Hamilton, MT</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive "Black Sun" (Solis Noir) Eclipse Centerpiece -->
+          <div class="lg:col-span-5 flex items-center justify-center">
+            <div id="eclipse-stage" class="relative w-72 h-72 sm:w-96 sm:h-96 flex items-center justify-center select-none cursor-crosshair">
+              
+              <!-- Outer Corona Aura -->
+              <div class="absolute inset-2 rounded-full bg-gradient-to-tr from-solar-600/20 via-solar-400/15 to-transparent blur-2xl animate-pulse-corona"></div>
+
+              <!-- Outer Orbital Telemetry Ring -->
+              <div id="orbit-outer" class="absolute inset-0 rounded-full border border-white/[0.07] animate-spin-slow">
+                <span class="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-solar-400 shadow-[0_0_12px_#FBBF24]"></span>
+                <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-slate-500"></span>
+              </div>
+
+              <!-- Middle Dashed Precision Ring -->
+              <div id="orbit-mid" class="absolute inset-7 sm:inset-9 rounded-full border border-dashed border-solar-500/25 animate-spin-reverse-slower"></div>
+
+              <!-- Inner Corona Ring -->
+              <div class="absolute inset-12 sm:inset-16 rounded-full border border-solar-400/40 shadow-solar-glow"></div>
+
+              <!-- The Black Sun Core -->
+              <div id="eclipse-core" class="relative w-40 h-40 sm:w-52 sm:h-52 rounded-full eclipse-disc border border-solar-400/50 flex flex-col items-center justify-center text-center p-4 transition-transform duration-200 ease-out">
+                <!-- Shimmer Highlight -->
+                <div id="eclipse-shimmer" class="absolute inset-0 rounded-full opacity-40 pointer-events-none" style="background: radial-gradient(circle at 30% 25%, rgba(252,211,77,0.35), transparent 55%);"></div>
+                
+                <span class="font-mono text-[10px] tracking-[0.26em] text-solar-400/90 uppercase mb-1">
+                  46.25° N • 114.16° W
+                </span>
+                <span class="font-display font-bold tracking-[0.2em] text-sm sm:text-base text-slate-100">
+                  SOLIS NOIR
+                </span>
+                <span class="mt-1.5 px-2 py-0.5 rounded-full bg-white/[0.05] border border-white/10 font-mono text-[9px] text-slate-400 tracking-wider">
+                  EST. 2026 • MT
+                </span>
+              </div>
+
+              <!-- Floating Coordinate Tag -->
+              <div class="hidden sm:flex items-center gap-2 absolute -bottom-3 right-2 px-3 py-1.5 rounded-lg bg-obsidian-900/90 border border-white/10 backdrop-blur-md shadow-xl">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                <span class="font-mono text-[10px] text-slate-300">SYSTEMS NOMINAL</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 3. STUDIO CAPABILITIES GRID                                           -->
+    <!-- ===================================================================== -->
+    <section id="studio" class="py-24 sm:py-32 relative border-t border-white/[0.06]">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        
+        <!-- Section Header -->
+        <div class="max-w-2xl mb-16 reveal">
+          <div class="font-mono text-xs tracking-[0.2em] text-solar-400 uppercase mb-3">
+            01 // Core Capabilities
+          </div>
+          <h2 class="font-display font-bold text-3xl sm:text-4xl text-slate-50 tracking-tight">
+            Engineered from the data layer up.
+          </h2>
+          <p class="mt-4 text-slate-400 text-base leading-relaxed">
+            We build vertically integrated products—combining resilient automated ingestion pipelines with crisp, tactile mobile interfaces designed to perform in the field.
+          </p>
+        </div>
+
+        <!-- 3-Column Capabilities Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          
+          <!-- Card 1 -->
+          <div class="glass-card rounded-2xl p-7 sm:p-8 flex flex-col justify-between reveal">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-solar-500/10 border border-solar-500/25 flex items-center justify-center text-solar-400 mb-6">
+                <i data-lucide="activity" class="w-6 h-6"></i>
+              </div>
+              <h3 class="font-display font-bold text-xl text-slate-100 mb-3">
+                Real-Time Telemetry & Data Pipelines
+              </h3>
+              <p class="text-sm text-slate-400 leading-relaxed">
+                Automated ingestion engines that normalize environmental sensors, satellite feeds, and live telemetry into low-latency, actionable intelligence.
+              </p>
+            </div>
+            <div class="mt-8 pt-5 border-t border-white/[0.06] flex flex-wrap gap-2">
+              <span class="font-mono text-[11px] px-2.5 py-1 rounded-md bg-white/[0.04] text-slate-300">Live Ingestion</span>
+              <span class="font-mono text-[11px] px-2.5 py-1 rounded-md bg-white/[0.04] text-slate-300">Edge Caching</span>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="glass-card rounded-2xl p-7 sm:p-8 flex flex-col justify-between reveal" style="transition-delay: 100ms;">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-solar-500/10 border border-solar-500/25 flex items-center justify-center text-solar-400 mb-6">
+                <i data-lucide="smartphone" class="w-6 h-6"></i>
+              </div>
+              <h3 class="font-display font-bold text-xl text-slate-100 mb-3">
+                Native & Cross-Platform Mobile Apps
+              </h3>
+              <p class="text-sm text-slate-400 leading-relaxed">
+                iOS and Android consumer applications crafted for speed, high-contrast outdoor legibility, and rock-solid offline reliability when connectivity drops.
+              </p>
+            </div>
+            <div class="mt-8 pt-5 border-t border-white/[0.06] flex flex-wrap gap-2">
+              <span class="font-mono text-[11px] px-2.5 py-1 rounded-md bg-white/[0.04] text-slate-300">iOS & Android</span>
+              <span class="font-mono text-[11px] px-2.5 py-1 rounded-md bg-white/[0.04] text-slate-300">Offline-First</span>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="glass-card rounded-2xl p-7 sm:p-8 flex flex-col justify-between reveal" style="transition-delay: 200ms;">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-solar-500/10 border border-solar-500/25 flex items-center justify-center text-solar-400 mb-6">
+                <i data-lucide="layers" class="w-6 h-6"></i>
+              </div>
+              <h3 class="font-display font-bold text-xl text-slate-100 mb-3">
+                Scalable Cloud Architecture
+              </h3>
+              <p class="text-sm text-slate-400 leading-relaxed">
+                Modern serverless APIs, zero-trust authentication, and automated observability built to scale effortlessly from initial beta cohorts to global audiences.
+              </p>
+            </div>
+            <div class="mt-8 pt-5 border-t border-white/[0.06] flex flex-wrap gap-2">
+              <span class="font-mono text-[11px] px-2.5 py-1 rounded-md bg-white/[0.04] text-slate-300">Cloud APIs</span>
+              <span class="font-mono text-[11px] px-2.5 py-1 rounded-md bg-white/[0.04] text-slate-300">High Availability</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 4. VENTURES / PORTFOLIO SHOWCASE                                      -->
+    <!-- ===================================================================== -->
+    <section id="ventures" class="py-24 sm:py-32 relative border-t border-white/[0.06] bg-obsidian-900/40">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        
+        <!-- Section Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 reveal">
+          <div class="max-w-2xl">
+            <div class="font-mono text-xs tracking-[0.2em] text-solar-400 uppercase mb-3">
+              02 // Ventures & Ecosystem
+            </div>
+            <h2 class="font-display font-bold text-3xl sm:text-4xl text-slate-50 tracking-tight">
+              Active & Upcoming Ecosystems.
+            </h2>
+          </div>
+          <p class="text-sm text-slate-400 max-w-sm">
+            Every product under Solis Noir LLC solves a real-world problem with precision data and clean design.
+          </p>
+        </div>
+
+        <!-- Ventures Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
+          
+          <!-- Flagship Venture Card: The Bite (Spans 7 cols on lg) -->
+          <article class="lg:col-span-7 glass-card rounded-3xl p-7 sm:p-10 relative overflow-hidden flex flex-col justify-between reveal">
+            <!-- Subtle Gold Glow Accent -->
+            <div class="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-solar-500/10 blur-3xl pointer-events-none"></div>
+
+            <div>
+              <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-solar-500/15 border border-solar-500/35 font-mono text-[11px] font-medium text-solar-300 tracking-wider">
+                  <span class="w-1.5 h-1.5 rounded-full bg-solar-400 animate-pulse"></span>
+                  IN DEVELOPMENT • iOS & ANDROID
+                </span>
+                <span class="font-mono text-xs text-slate-500">FLAGSHIP // 001</span>
+              </div>
+
+              <div class="flex items-center gap-4 mb-4">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-sky-500/20 to-solar-500/20 border border-white/15 flex items-center justify-center text-solar-400">
+                  <i data-lucide="waves" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <h3 class="font-display font-bold text-2xl sm:text-3xl text-slate-50">
+                    The Bite
+                  </h3>
+                  <p class="text-xs font-mono text-slate-400 uppercase tracking-wider">
+                    Offshore Marine Intelligence Platform
+                  </p>
+                </div>
+              </div>
+
+              <p class="text-slate-300 text-sm sm:text-base leading-relaxed mt-4">
+                An offshore marine intelligence and real-time NOAA buoy telemetry platform built specifically for Southern California and Baja anglers. Synthesizes sea surface temperature gradients, swell intervals, barometric shifts, and trip logs into one unified cockpit.
+              </p>
+
+              <!-- Interactive Telemetry Preview Tags -->
+              <div class="mt-7 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div class="p-3.5 rounded-xl bg-obsidian-950/70 border border-white/[0.07]">
+                  <div class="font-mono text-[10px] text-slate-500 uppercase">Telemetry</div>
+                  <div class="text-xs font-semibold text-slate-200 mt-1 flex items-center gap-1.5">
+                    <i data-lucide="radio" class="w-3.5 h-3.5 text-solar-400"></i>
+                    Real-Time NOAA Buoys
+                  </div>
+                </div>
+                <div class="p-3.5 rounded-xl bg-obsidian-950/70 border border-white/[0.07]">
+                  <div class="font-mono text-[10px] text-slate-500 uppercase">Oceanography</div>
+                  <div class="text-xs font-semibold text-slate-200 mt-1 flex items-center gap-1.5">
+                    <i data-lucide="thermometer" class="w-3.5 h-3.5 text-solar-400"></i>
+                    SST & Swell Analytics
+                  </div>
+                </div>
+                <div class="p-3.5 rounded-xl bg-obsidian-950/70 border border-white/[0.07]">
+                  <div class="font-mono text-[10px] text-slate-500 uppercase">Navigation</div>
+                  <div class="text-xs font-semibold text-slate-200 mt-1 flex items-center gap-1.5">
+                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-solar-400"></i>
+                    Offline Waypoints
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-white/[0.08] flex flex-wrap items-center justify-between gap-4">
+              <span class="font-mono text-xs text-slate-400">Target Launch: 2026</span>
+              <a href="#contact" onclick="preselectInquiry('Early Access / Beta Testing')" class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-solar-400 hover:text-solar-300 transition-colors">
+                <span>Request Early Access</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Right Column Stack: Project Fairway & R&D Lab (Spans 5 cols on lg) -->
+          <div class="lg:col-span-5 flex flex-col gap-6 sm:gap-8">
+            
+            <!-- Card 2: Project Fairway -->
+            <article class="glass-card rounded-3xl p-7 sm:p-8 flex-1 flex flex-col justify-between reveal" style="transition-delay: 120ms;">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-5">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 font-mono text-[11px] text-emerald-300 tracking-wider">
+                    INCUBATING
+                  </span>
+                  <span class="font-mono text-xs text-slate-500">VENTURE // 002</span>
+                </div>
+
+                <h3 class="font-display font-bold text-xl sm:text-2xl text-slate-100 mb-2">
+                  Project Fairway
+                </h3>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                  Precision on-course analytics, dispersion tracking, and equipment performance companion engineered for the modern golfer.
+                </p>
+              </div>
+
+              <div class="mt-6 pt-4 border-t border-white/[0.06] flex flex-wrap gap-2">
+                <span class="font-mono text-[11px] px-2.5 py-1 rounded-md bg-white/[0.04] text-slate-300">Shot Dispersion</span>
+                <span class="font-mono text-[11px] px-2.5 py-1 rounded-md bg-white/[0.04] text-slate-300">Equipment Specs</span>
+              </div>
+            </article>
+
+            <!-- Card 3: Future Ventures / R&D Lab -->
+            <article class="glass-card rounded-3xl p-7 sm:p-8 flex-1 flex flex-col justify-between reveal" style="transition-delay: 220ms;">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-5">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.06] border border-white/15 font-mono text-[11px] text-slate-300 tracking-wider">
+                    R&D LAB
+                  </span>
+                  <span class="font-mono text-xs text-slate-500">VENTURE // 003</span>
+                </div>
+
+                <h3 class="font-display font-bold text-xl sm:text-2xl text-slate-100 mb-2">
+                  Future Ventures
+                </h3>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                  Continuously prototyping specialized consumer utilities, outdoor telemetry tools, and high-craft vertical software ecosystems.
+                </p>
+              </div>
+
+              <div class="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between">
+                <span class="font-mono text-xs text-slate-500">Internal Studio Pipeline</span>
+                <a href="#contact" onclick="preselectInquiry('Partnership / Venture Inquiry')" class="font-mono text-xs text-solar-400 hover:underline">
+                  Pitch / Partner →
+                </a>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 4B. STUDIO PHILOSOPHY BANNER                                          -->
+    <!-- ===================================================================== -->
+    <section id="architecture" class="py-20 sm:py-24 border-t border-white/[0.06] relative overflow-hidden">
+      <div class="max-w-5xl mx-auto px-5 sm:px-8 text-center reveal">
+        <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-solar-500/10 border border-solar-500/25 text-solar-400 mb-6">
+          <i data-lucide="shield-check" class="w-6 h-6"></i>
+        </div>
+        <blockquote class="font-display font-semibold text-2xl sm:text-3xl lg:text-4xl text-slate-100 leading-snug tracking-tight">
+          “Software should feel like a precision instrument—quiet, tactile, and unwavering when conditions turn complex.”
+        </blockquote>
+        <p class="mt-5 font-mono text-xs tracking-[0.2em] text-slate-400 uppercase">
+          Solis Noir LLC • Product Principles
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 5. NETLIFY-READY CONTACT SECTION                                      -->
+    <!-- ===================================================================== -->
+    <section id="contact" class="py-24 sm:py-32 relative border-t border-white/[0.06] bg-obsidian-900/30">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          <!-- Left Column: Direct Info -->
+          <div class="lg:col-span-5 space-y-6 reveal">
+            <div class="font-mono text-xs tracking-[0.2em] text-solar-400 uppercase">
+              03 // Contact Studio
+            </div>
+            <h2 class="font-display font-bold text-3xl sm:text-4xl text-slate-50 tracking-tight">
+              Initiate a conversation.
+            </h2>
+            <p class="text-slate-400 text-base leading-relaxed">
+              Whether you’re reaching out regarding app support, early beta access, strategic partnerships, or press inquiries, our team responds directly.
+            </p>
+
+            <!-- Direct Email Box with One-Click Copy -->
+            <div class="p-5 rounded-2xl glass-card space-y-3">
+              <div class="font-mono text-[11px] text-slate-400 uppercase tracking-wider">
+                Direct Studio Dispatch
+              </div>
+              <div class="flex items-center justify-between gap-3">
+                <a href="mailto:hello@solisnoir.com" class="font-mono text-sm sm:text-base font-medium text-solar-400 hover:text-solar-300 transition-colors truncate">
+                  hello@solisnoir.com
+                </a>
+                <button type="button" onclick="copyEmail()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-xs font-medium text-slate-200 transition-colors shrink-0">
+                  <i data-lucide="copy" class="w-3.5 h-3.5 text-solar-400"></i>
+                  <span>Copy</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Corporate Entity Metadata (Helpful for App Store / Business Verification) -->
+            <div class="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.06] space-y-2.5 text-xs">
+              <div class="flex justify-between">
+                <span class="text-slate-500 font-mono">LEGAL ENTITY</span>
+                <span class="text-slate-300 font-medium">Solis Noir LLC</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-500 font-mono">JURISDICTION</span>
+                <span class="text-slate-300 font-medium">Montana, United States</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-500 font-mono">HEADQUARTERS</span>
+                <span class="text-slate-300 font-medium">Hamilton, MT</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Netlify-Ready Contact Form -->
+          <div class="lg:col-span-7 reveal" style="transition-delay: 120ms;">
+            <div class="glass-card rounded-3xl p-7 sm:p-10">
+              
+              <!-- Success State (Shown after submission) -->
+              <div id="form-success" class="hidden py-10 text-center space-y-4">
+                <div class="w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mx-auto">
+                  <i data-lucide="check-circle-2" class="w-7 h-7"></i>
+                </div>
+                <h3 class="font-display font-bold text-2xl text-slate-50">
+                  Transmission Received
+                </h3>
+                <p class="text-sm text-slate-400 max-w-md mx-auto leading-relaxed">
+                  Thank you for contacting <strong class="text-slate-200">Solis Noir LLC</strong>. Your message has been logged and our team will respond shortly.
+                </p>
+                <div class="pt-4">
+                  <button type="button" onclick="resetContactForm()" class="px-5 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider bg-white/[0.06] hover:bg-white/[0.1] border border-white/10 text-slate-200 transition-colors">
+                    Send Another Message
+                  </button>
+                </div>
+              </div>
+
+              <!-- Netlify Forms Configured Form -->
+              <form id="netlify-contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="space-y-5">
+                <!-- Required hidden input for Netlify Forms -->
+                <input type="hidden" name="form-name" value="contact" />
+                
+                <!-- Honeypot field for spam protection -->
+                <p class="hidden">
+                  <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label for="name" class="block font-mono text-xs uppercase tracking-wider text-slate-400 mb-2">
+                      Full Name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      required
+                      placeholder="Alex Mercer"
+                      class="w-full px-4 py-3 rounded-xl bg-obsidian-950/80 border border-white/10 text-slate-100 placeholder-slate-600 text-sm focus:outline-none focus:border-solar-500 focus:ring-1 focus:ring-solar-500/50 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label for="email" class="block font-mono text-xs uppercase tracking-wider text-slate-400 mb-2">
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      placeholder="alex@domain.com"
+                      class="w-full px-4 py-3 rounded-xl bg-obsidian-950/80 border border-white/10 text-slate-100 placeholder-slate-600 text-sm focus:outline-none focus:border-solar-500 focus:ring-1 focus:ring-solar-500/50 transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label for="inquiry-type" class="block font-mono text-xs uppercase tracking-wider text-slate-400 mb-2">
+                    Inquiry Type
+                  </label>
+                  <select
+                    id="inquiry-type"
+                    name="inquiry_type"
+                    class="w-full px-4 py-3 rounded-xl bg-obsidian-950/80 border border-white/10 text-slate-100 text-sm focus:outline-none focus:border-solar-500 focus:ring-1 focus:ring-solar-500/50 transition-colors"
+                  >
+                    <option value="General Inquiry">General Inquiry</option>
+                    <option value="App Support">App Support (The Bite / Mobile Apps)</option>
+                    <option value="Early Access / Beta Testing">Early Access / Beta Testing</option>
+                    <option value="Partnership / Venture Inquiry">Partnership / Venture Inquiry</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="message" class="block font-mono text-xs uppercase tracking-wider text-slate-400 mb-2">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="4"
+                    required
+                    placeholder="Tell us about your inquiry, feedback, or partnership idea..."
+                    class="w-full px-4 py-3 rounded-xl bg-obsidian-950/80 border border-white/10 text-slate-100 placeholder-slate-600 text-sm focus:outline-none focus:border-solar-500 focus:ring-1 focus:ring-solar-500/50 transition-colors resize-y"
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  id="submit-btn"
+                  class="w-full py-3.5 px-6 rounded-xl font-semibold text-sm bg-gradient-to-r from-solar-400 to-solar-500 text-obsidian-950 shadow-solar-subtle hover:brightness-110 transition-all duration-300 flex items-center justify-center gap-2"
+                >
+                  <span>Send Message</span>
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- 6. APP STORE & COMPLIANCE-READY FOOTER                                -->
+  <!-- ===================================================================== -->
+  <footer class="border-t border-white/[0.08] bg-obsidian-950 py-12 sm:py-16">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-10 border-b border-white/[0.06]">
+        
+        <!-- Brand & Location -->
+        <div class="space-y-2">
+          <div class="flex items-center gap-2.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-solar-500 shadow-[0_0_10px_#D4AF37]"></span>
+            <span class="font-display font-bold tracking-[0.18em] text-sm text-slate-100">
+              SOLIS NOIR LLC
+            </span>
+          </div>
+          <p class="text-xs text-slate-500 font-mono">
+            Hamilton, Montana • Independent Software & Digital Product Studio
+          </p>
+        </div>
+
+        <!-- Legal & App Store Compliance Links -->
+        <div class="flex flex-wrap items-center gap-6 text-xs font-medium text-slate-400">
+          <button type="button" onclick="openLegalModal('privacy')" class="hover:text-solar-400 transition-colors">
+            Privacy Policy
+          </button>
+          <button type="button" onclick="openLegalModal('terms')" class="hover:text-solar-400 transition-colors">
+            Terms of Service
+          </button>
+          <a href="#contact" onclick="preselectInquiry('App Support')" class="hover:text-solar-400 transition-colors">
+            App Support
+          </a>
+        </div>
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <p>© 2026 Solis Noir LLC. All rights reserved.</p>
+        <p class="font-mono text-[11px] text-slate-600">
+          HEADQUARTERED IN HAMILTON, MONTANA
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- LEGAL MODAL (PRIVACY POLICY & TERMS OF SERVICE FOR APP STORE REVIEW)  -->
+  <!-- ===================================================================== -->
+  <div id="legal-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md" role="dialog" aria-modal="true" aria-labelledby="legal-modal-title">
+    <div class="relative w-full max-w-2xl max-h-[85vh] flex flex-col rounded-3xl bg-obsidian-900 border border-white/15 shadow-2xl overflow-hidden">
+      
+      <!-- Modal Header -->
+      <div class="px-6 py-5 border-b border-white/10 flex items-center justify-between bg-obsidian-850">
+        <div>
+          <span class="font-mono text-[10px] tracking-[0.2em] text-solar-400 uppercase">Solis Noir LLC • Legal</span>
+          <h3 id="legal-modal-title" class="font-display font-bold text-lg text-slate-100 mt-0.5">
+            Privacy Policy
+          </h3>
+        </div>
+        <button type="button" onclick="closeLegalModal()" aria-label="Close legal modal" class="p-2 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-slate-400 hover:text-white transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Modal Scrollable Content -->
+      <div id="legal-modal-body" class="p-6 sm:p-8 overflow-y-auto space-y-5 text-sm text-slate-300 leading-relaxed">
+        <!-- Populated dynamically via JS -->
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-6 py-4 border-t border-white/10 bg-obsidian-850 flex items-center justify-between">
+        <span class="font-mono text-[11px] text-slate-500">Effective: November 2026</span>
+        <button type="button" onclick="closeLegalModal()" class="px-5 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider bg-solar-500 text-obsidian-950 hover:brightness-110 transition-all">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- JAVASCRIPT: ICONS, ECLIPSE PARALLAX, NETLIFY AJAX & MODALS            -->
+  <!-- ===================================================================== -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // -----------------------------------------------------------------------
+    // 1. Mobile Navigation Drawer
+    // -----------------------------------------------------------------------
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // -----------------------------------------------------------------------
+    // 2. Interactive "Black Sun" Eclipse Parallax & Ambient Canvas Particles
+    // -----------------------------------------------------------------------
+    const eclipseStage = document.getElementById('eclipse-stage');
+    const eclipseCore = document.getElementById('eclipse-core');
+    const eclipseShimmer = document.getElementById('eclipse-shimmer');
+
+    if (eclipseStage && eclipseCore) {
+      eclipseStage.addEventListener('mousemove', (e) => {
+        const rect = eclipseStage.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+        eclipseCore.style.transform = `translate(${x * 16}px, ${y * 16}px)`;
+        const shimmerX = Math.round((x + 0.5) * 100);
+        const shimmerY = Math.round((y + 0.5) * 100);
+        eclipseShimmer.style.background = `radial-gradient(circle at ${shimmerX}% ${shimmerY}%, rgba(252,211,77,0.42), transparent 60%)`;
+      });
+
+      eclipseStage.addEventListener('mouseleave', () => {
+        eclipseCore.style.transform = 'translate(0px, 0px)';
+        eclipseShimmer.style.background = 'radial-gradient(circle at 30% 25%, rgba(252,211,77,0.35), transparent 55%)';
+      });
+    }
+
+    // Subtle floating solar dust particles on Canvas
+    const canvas = document.getElementById('solar-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+
+    function initParticles() {
+      particles = [];
+      const count = Math.min(45, Math.floor((canvas.width * canvas.height) / 28000));
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 1.4 + 0.4,
+          vx: (Math.random() - 0.5) * 0.22,
+          vy: (Math.random() - 0.5) * 0.22,
+          gold: Math.random() > 0.65,
+          alpha: Math.random() * 0.5 + 0.15,
+        });
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (const p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.gold
+          ? `rgba(212, 175, 55, ${p.alpha})`
+          : `rgba(248, 250, 252, ${p.alpha * 0.45})`;
+        ctx.fill();
+      }
+      requestAnimationFrame(animateParticles);
+    }
+
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      initParticles();
+    });
+
+    window.addEventListener('load', () => {
+      resizeCanvas();
+      initParticles();
+      animateParticles();
+    });
+
+    // -----------------------------------------------------------------------
+    // 3. Scroll Reveal Observer
+    // -----------------------------------------------------------------------
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+    revealElements.forEach((el) => revealObserver.observe(el));
+
+    // -----------------------------------------------------------------------
+    // 4. Toast Notification & Clipboard Helper (iFrame-safe)
+    // -----------------------------------------------------------------------
+    let toastTimeout;
+    function showToast(message) {
+      const toast = document.getElementById('toast-notification');
+      const toastMsg = document.getElementById('toast-message');
+      toastMsg.textContent = message;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 3200);
+    }
+
+    function copyEmail() {
+      const emailText = 'hello@solisnoir.com';
+      const tempInput = document.createElement('textarea');
+      tempInput.value = emailText;
+      tempInput.style.position = 'fixed';
+      tempInput.style.opacity = '0';
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      try {
+        document.execCommand('copy');
+        showToast('Copied hello@solisnoir.com to clipboard');
+      } catch (err) {
+        showToast('Email: hello@solisnoir.com');
+      }
+      document.body.removeChild(tempInput);
+    }
+
+    // Preselect Inquiry Type when clicking Venture CTAs
+    function preselectInquiry(type) {
+      const select = document.getElementById('inquiry-type');
+      if (select) {
+        select.value = type;
+      }
+    }
+
+    // -----------------------------------------------------------------------
+    // 5. Netlify Forms AJAX Submission Handler
+    // -----------------------------------------------------------------------
+    const contactForm = document.getElementById('netlify-contact-form');
+    const formSuccess = document.getElementById('form-success');
+    const submitBtn = document.getElementById('submit-btn');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const originalBtnHTML = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span>Transmitting...</span>';
+
+        const formData = new FormData(contactForm);
+
+        try {
+          // Posts cleanly to Netlify Forms when hosted on Netlify
+          const response = await fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(formData).toString(),
+          });
+
+          // Show confirmation state on live Netlify deploy or local preview
+          contactForm.classList.add('hidden');
+          formSuccess.classList.remove('hidden');
+          showToast('Message sent to Solis Noir LLC');
+        } catch (error) {
+          // Graceful fallback in local file:// preview environments
+          contactForm.classList.add('hidden');
+          formSuccess.classList.remove('hidden');
+          showToast('Preview: Form submitted cleanly');
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnHTML;
+        }
+      });
+    }
+
+    function resetContactForm() {
+      contactForm.reset();
+      formSuccess.classList.add('hidden');
+      contactForm.classList.remove('hidden');
+    }
+
+    // -----------------------------------------------------------------------
+    // 6. Legal Modals (Privacy Policy & Terms of Service for App Stores)
+    // -----------------------------------------------------------------------
+    const legalContent = {
+      privacy: {
+        title: 'Privacy Policy — Solis Noir LLC',
+        body: `
+          <p><strong class="text-slate-100">Solis Noir LLC</strong> ("we," "our," or "us") respects your privacy and is committed to protecting personal information collected across our websites, mobile applications (including <em>The Bite</em>), and digital services.</p>
+          <h4 class="font-display font-semibold text-base text-slate-100 pt-2">1. Information We Collect</h4>
+          <p>We collect only the information necessary to operate and improve our products, including voluntary contact submissions (name, email address, inquiry details), account credentials where applicable, and anonymized device or diagnostic telemetry.</p>
+          <h4 class="font-display font-semibold text-base text-slate-100 pt-2">2. Location & Environmental Telemetry</h4>
+          <p>Certain mobile applications developed by Solis Noir LLC may request device location permissions to deliver localized marine weather, buoy readings, or on-course analytics. Location data is processed solely to provide core app functionality and is never sold to third-party data brokers.</p>
+          <h4 class="font-display font-semibold text-base text-slate-100 pt-2">3. Data Security & Retention</h4>
+          <p>We implement industry-standard encryption in transit and at rest. You may request access to, correction of, or deletion of your personal data at any time by contacting <span class="text-solar-400 font-mono">hello@solisnoir.com</span>.</p>
+        `,
+      },
+      terms: {
+        title: 'Terms of Service — Solis Noir LLC',
+        body: `
+          <p>Welcome to <strong class="text-slate-100">Solis Noir LLC</strong>. By accessing our website or using any software application published by Solis Noir LLC, you agree to be bound by these Terms of Service.</p>
+          <h4 class="font-display font-semibold text-base text-slate-100 pt-2">1. Intellectual Property</h4>
+          <p>All software, user interfaces, telemetry algorithms, trademarks, and brand assets published under Solis Noir LLC are the exclusive property of Solis Noir LLC and are protected under United States and international copyright laws.</p>
+          <h4 class="font-display font-semibold text-base text-slate-100 pt-2">2. Environmental & Marine Data Disclaimer</h4>
+          <p>Telemetry, ocean conditions, buoy feeds, and navigation tools provided in our applications are for informational and planning purposes only and should never replace official government marine charts, Coast Guard advisories, or sound personal judgment.</p>
+          <h4 class="font-display font-semibold text-base text-slate-100 pt-2">3. Governing Law</h4>
+          <p>These Terms are governed by and construed in accordance with the laws of the State of Montana, without regard to conflict of law principles.</p>
+        `,
+      },
+    };
+
+    const legalModal = document.getElementById('legal-modal');
+    const legalModalTitle = document.getElementById('legal-modal-title');
+    const legalModalBody = document.getElementById('legal-modal-body');
+
+    function openLegalModal(type) {
+      const data = legalContent[type];
+      if (!data) return;
+      legalModalTitle.textContent = data.title;
+      legalModalBody.innerHTML = data.body;
+      legalModal.classList.remove('hidden');
+      legalModal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLegalModal() {
+      legalModal.classList.add('hidden');
+      legalModal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    // Close modal on backdrop click or Escape key
+    legalModal.addEventListener('click', (e) => {
+      if (e.target === legalModal) closeLegalModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !legalModal.classList.contains('hidden')) {
+        closeLegalModal();
+      }
+    });
+  </script>
+</body>
+</html>
